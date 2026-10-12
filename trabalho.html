@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smell Verse - Onde histórias ganham aroma</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #7c3aed;
+      --primary-dark: #6d28d9;
+      --secondary: #f59e0b;
+      --dark: #1e1b4b;
+      --gray: #64748b;
+      --light: #faf5ff;
+      --white: #ffffff;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --shadow: 0 4px 20px rgba(124, 58, 237, 0.12);
+      --radius: 14px;
+      --transition: all 0.3s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .logo img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .logo-text {
+      color: var(--dark);
+    }
+
+    .footer .logo-text {
+      color: var(--white);
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .header-content {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-link {
+      position: relative;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--primary);
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .cart-btn {
+      position: relative;
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--light);
+      color: var(--dark);
+      font-size: 1.15rem;
+      transition: var(--transition);
+    }
+
+    .cart-btn:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 20px;
+      height: 20px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--danger);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 90px 0;
+      background: linear-gradient(135deg, #4c1d95, #7c3aed, #a78bfa);
+      color: var(--white);
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero h1 {
+      margin-bottom: 18px;
+      font-size: 2.9rem;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      max-width: 480px;
+      margin-bottom: 30px;
+      font-size: 1.15rem;
+    }
+
+    .hero-card {
+      padding: 45px 55px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.12);
+      text-align: center;
+      backdrop-filter: blur(12px);
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    .hero-card i {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 3.2rem;
+    }
+
+    .hero-card span {
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 30px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+
+    .btn-primary:hover {
+      background: #d97706;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--gray);
+      background: transparent;
+      color: var(--gray);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .btn-block {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .btn-add {
+      width: 100%;
+      margin-top: 14px;
+      padding: 11px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+
+    .btn-add:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-add:disabled {
+      background: var(--success);
+    }
+
+    .categories {
+      padding: 32px 0;
+      background: white;
+    }
+
+    .category-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .category-btn {
+      padding: 11px 24px;
+      border-radius: 50px;
+      background: var(--light);
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .products,
+    .offers {
+      padding: 65px 0;
+    }
+
+    .offers {
+      background: var(--white);
+    }
+
+    .section-header {
+      margin-bottom: 42px;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      margin-bottom: 8px;
+      font-size: 2.1rem;
+    }
+
+    .section-header p {
+      color: var(--gray);
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .search-container > i {
+      position: absolute;
+      top: 50%;
+      left: 18px;
+      transform: translateY(-50%);
+      color: var(--gray);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 15px 48px;
+      border: 2px solid #e9d5ff;
+      border-radius: 50px;
+      outline: none;
+      background: var(--white);
+      color: var(--dark);
+      font-size: 1rem;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+    }
+
+    .clear-search {
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      display: none;
+      transform: translateY(-50%);
+      background: transparent;
+      color: var(--gray);
+    }
+
+    .products-grid,
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 26px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 14px 32px rgba(124, 58, 237, 0.18);
+    }
+
+    .product-image {
+      position: relative;
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(145deg, #ede9fe, #f5f3ff);
+      color: var(--primary);
+      font-size: 3rem;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .product-badge,
+    .offer-discount {
+      background: var(--danger);
+      color: var(--white);
+      font-weight: 700;
+      border-radius: 20px;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 5px 12px;
+      font-size: 0.75rem;
+    }
+
+    .product-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .product-category {
+      margin-bottom: 6px;
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .product-name {
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .price-current {
+      color: var(--dark);
+      font-size: 1.28rem;
+      font-weight: 700;
+    }
+
+    .price-old {
+      color: var(--gray);
+      font-size: 0.9rem;
+      text-decoration: line-through;
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      padding: 50px 20px;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    .offer-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 26px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      text-align: center;
+    }
+
+    .offer-card .product-image {
+      width: 100%;
+      height: 130px;
+      background: transparent;
+    }
+
+    .offer-discount {
+      margin-bottom: 14px;
+      padding: 5px 14px;
+      font-size: 0.85rem;
+    }
+
+    .newsletter {
+      padding: 65px 0;
+      background: linear-gradient(135deg, #4c1d95, #7c3aed);
+      color: var(--white);
+    }
+
+    .newsletter-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .newsletter-form input {
+      min-width: 280px;
+      padding: 15px 22px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .footer {
+      padding: 55px 0 0;
+      background: var(--dark);
+      color: #a5b4fc;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 42px;
+    }
+
+    .footer-brand p {
+      max-width: 290px;
+    }
+
+    .footer-links,
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links h4,
+    .footer-contact h4 {
+      color: white;
+    }
+
+    .footer-contact i {
+      width: 20px;
+      color: #c4b5fd;
+    }
+
+    .footer-bottom {
+      padding: 22px;
+      border-top: 1px solid #312e81;
+      text-align: center;
+    }
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      visibility: hidden;
+      background: rgba(0, 0, 0, 0.55);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .cart-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      max-width: 100%;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -6px 0 30px rgba(0, 0, 0, 0.15);
+      transition: right 0.35s ease;
+    }
+
+    .cart-sidebar.active {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 24px;
+      border-bottom: 1px solid #e9d5ff;
+    }
+
+    .close-cart {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--light);
+      color: var(--gray);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+
+    .cart-empty {
+      padding: 60px 20px;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    .cart-empty i {
+      margin-bottom: 16px;
+      font-size: 3.2rem;
+      opacity: 0.4;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f3e8ff;
+    }
+
+    .cart-item-image {
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--light);
+      color: var(--primary);
+    }
+
+    .cart-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+    }
+
+    .cart-item-price {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: var(--light);
+    }
+
+    .qty-value {
+      min-width: 24px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .remove-item {
+      margin-left: auto;
+      background: transparent;
+      color: var(--danger);
+    }
+
+    .cart-footer {
+      padding: 20px 24px;
+      border-top: 1px solid #e9d5ff;
+      background: var(--light);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      font-size: 1.15rem;
+    }
+
+    .cart-total strong {
+      color: var(--primary);
+      font-size: 1.4rem;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      background: rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-content {
+      width: 90%;
+      max-width: 460px;
+      padding: 35px;
+      border-radius: 18px;
+      background: var(--white);
+    }
+
+    .modal-content h3 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .modal-content input {
+      width: 100%;
+      margin-bottom: 12px;
+      padding: 13px 15px;
+      border: 1px solid #ddd6fe;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        display: none;
+      }
+
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .logo img {
+        width: 48px;
+        height: 48px;
+      }
+
+      .logo-text {
+        display: none;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero h1 {
+        font-size: 1.85rem;
+      }
+
+      .cart-sidebar {
+        width: 100%;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .product-image {
+        height: 145px;
+      }
+
+      .product-info {
+        padding: 14px;
+      }
+
+      .product-name {
+        font-size: 0.92rem;
+      }
+
+      .price-current {
+        font-size: 1.08rem;
+      }
+
+      .newsletter-form input {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container header-content">
+      <a href="#home" class="logo" aria-label="Smell Verse">
+        <img src="logotipo.jpg" alt="Logo Smell Verse">
+        <span class="logo-text">Smell Verse</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#home" class="nav-link active">Início</a>
+        <a href="#produtos" class="nav-link">Perfumes</a>
+        <a href="#ofertas" class="nav-link">Ofertas</a>
+        <a href="#contato" class="nav-link">Contato</a>
+      </nav>
+
+      <button class="cart-btn" id="cartBtn" aria-label="Abrir carrinho">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div>
+        <h1>Onde histórias<br>ganham aroma</h1>
+
+        <p>
+          Aqui você encontra o perfume do seu filme ou série favorito.
+        </p>
+
+        <a href="#produtos" class="btn btn-primary">
+          Explorar Coleção
+        </a>
+      </div>
+
+      <div class="hero-card">
+        <i class="fas fa-wind"></i>
+        <span>Até 35% OFF</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories">
+    <div class="container">
+      <div class="category-list">
+        <button class="category-btn active" data-category="todos">
+          Todos
+        </button>
+
+        <button class="category-btn" data-category="masculino">
+          Masculinos
+        </button>
+
+        <button class="category-btn" data-category="feminino">
+          Femininos
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="produtos">
+    <div class="container">
+      <div class="section-header">
+        <h2>Coleção Cinemática</h2>
+        <p>
+          Fragrâncias exclusivas inspiradas em filmes, séries e animes.
+        </p>
+      </div>
+
+      <div class="search-container">
+        <i class="fas fa-search"></i>
+
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          placeholder="Pesquisar perfumes..."
+          aria-label="Pesquisar perfumes"
+        >
+
+        <button
+          type="button"
+          id="clearSearch"
+          class="clear-search"
+          aria-label="Limpar pesquisa"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <div class="no-results">
+          <p>Carregando produtos...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="offers" id="ofertas">
+    <div class="container">
+      <div class="section-header">
+        <h2>Ofertas Especiais</h2>
+        <p>Aproveite enquanto o estoque durar.</p>
+      </div>
+
+      <div class="offers-grid" id="offersGrid"></div>
+    </div>
+  </section>
+
+  <section class="newsletter" id="contato">
+    <div class="container newsletter-content">
+      <div>
+        <h2>Receba novidades e ofertas</h2>
+        <p>Cadastre-se e ganhe 15% a mais de desconto na primeira compra.</p>
+      </div>
+
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Digite seu e-mail" required>
+        <button type="submit" class="btn btn-primary">
+          Cadastrar
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="#home" class="logo" aria-label="Smell Verse">
+          <img src="logotipo.jpg" alt="Logo Smell Verse">
+          <span class="logo-text">Smell Verse</span>
+        </a>
+
+        <p>
+          A melhor loja onde você pode encontrar o perfume de seu filme ou série favorito. Aproveite!
+          desde Ontem.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Links</h4>
+        <a href="#home">Início</a>
+        <a href="#produtos">Perfumes</a>
+        <a href="#ofertas">Ofertas</a>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contato</h4>
+
+        <p>
+          <i class="fas fa-envelope"></i>
+          contato@smellverse.com.br
+        </p>
+
+        <p>
+          <i class="fas fa-phone"></i>
+          (41) 67676-6767
+        </p>
+
+        <p>
+          <i class="fas fa-map-marker-alt"></i>
+          Araucária, Pr
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        &copy; 2026 Smell Verse. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Seu Carrinho</h3>
+
+      <button class="close-cart" id="closeCart">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cartTotal">R$ 0,00</strong>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="checkoutBtn">
+        Finalizar Compra
+      </button>
+
+      <button class="btn btn-outline btn-block" id="clearCart">
+        Limpar Carrinho
+      </button>
+    </div>
+  </aside>
+
+  <div class="modal" id="checkoutModal">
+    <div class="modal-content">
+      <h3>Finalizar pedido</h3>
+
+      <form id="checkoutForm">
+        <input
+          type="text"
+          id="customerName"
+          placeholder="Seu nome"
+          required
+        >
+
+        <input
+          type="email"
+          id="customerEmail"
+          placeholder="Seu e-mail"
+          required
+        >
+
+        <input
+          type="tel"
+          id="customerPhone"
+          placeholder="Seu telefone"
+          required
+        >
+
+        <div class="modal-actions">
+          <button
+            type="button"
+            class="btn btn-outline"
+            id="cancelCheckout"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="confirmCheckout"
+          >
+            Confirmar pedido
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const DB_NAME = "smellVerseDB";
+    const DB_VERSION = 1;
+
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+        request.onupgradeneeded = (event) => {
+          const db = event.target.result;
+
+          if (!db.objectStoreNames.contains("cart")) {
+            db.createObjectStore("cart", { keyPath: "id" });
+          }
+
+          if (!db.objectStoreNames.contains("orders")) {
+            db.createObjectStore("orders", { keyPath: "id" });
+          }
+        };
+
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function saveCartToDB(items) {
+      const db = await openDatabase();
+
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction("cart", "readwrite");
+        const store = tx.objectStore("cart");
+        store.clear();
+
+        items.forEach(item => {
+          store.put(item);
+        });
+
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    async function loadCartFromDB() {
+      const db = await openDatabase();
+
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction("cart", "readonly");
+        const store = tx.objectStore("cart");
+        const request = store.getAll();
+
+        request.onsuccess = () => resolve(request.result || []);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function saveOrderToDB(order) {
+      const db = await openDatabase();
+
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction("orders", "readwrite");
+        const store = tx.objectStore("orders");
+        store.put(order);
+
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    async function loadOrdersFromDB() {
+      const db = await openDatabase();
+
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction("orders", "readonly");
+        const store = tx.objectStore("orders");
+        const request = store.getAll();
+
+        request.onsuccess = () => resolve(request.result || []);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function migrateLegacyStorage() {
+      const legacyCart = JSON.parse(localStorage.getItem("smellverse_cart") || "null");
+      if (legacyCart && Array.isArray(legacyCart)) {
+        await saveCartToDB(legacyCart);
+        localStorage.removeItem("smellverse_cart");
+      }
+
+      const legacyOrders = JSON.parse(localStorage.getItem("smellverse_orders") || "null");
+      if (legacyOrders && Array.isArray(legacyOrders)) {
+        for (const order of legacyOrders) {
+          await saveOrderToDB(order);
+        }
+        localStorage.removeItem("smellverse_orders");
+      }
+    }
+
+    const localProducts = [
+      { id: 1, name: "McQueen", category: "masculino", oldPrice: 119.90, icon: "mcquenn.jpg", badge: "-26%" },
+      { id: 2, name: "Cebolinha", category: "masculino", oldPrice: 89.90, icon: "23.jpg", badge: "-29%" },
+      { id: 3, name: "Homem de ferro", category: "masculino", oldPrice: 113.90, icon: "gf.jpg", badge: "-25%" },
+      { id: 4, name: "Homem-aranha", category: "masculino", oldPrice: 129.90, icon: "images.jpg", badge: "-26%" },
+      { id: 5, name: "One Piece", category: "masculino", oldPrice: 120.90, icon: "12.jpg", badge: "-25%" },
+      { id: 6, name: "Barbie", category: "feminino", oldPrice: 99.90, icon: "barbie.jpg", badge: "-26%" },
+      { id: 7, name: "Batman", category: "masculino", oldPrice: 114.90, icon: "batman.jpg", badge: "-26%" },
+      { id: 8, name: "Super Man", category: "masculino", oldPrice: 109.90, icon: "22.jpg", badge: "-26%" },
+      { id: 9, name: "Naruto", category: "masculino", oldPrice: 124.90, icon: "naruto.jpg", badge: "-27%" },
+      { id: 10, name: "Dragon Ball Z", category: "masculino", oldPrice: 49.90, icon: "dragonballz.jpg", badge: "-26%" },
+      { id: 11, name: "Frozen", category: "feminino", oldPrice: 121.90, icon: "frozen.jpg", badge: "-24%" },
+      { id: 12, name: "Moana", category: "feminino", oldPrice: 99.90, icon: "moana.jpg", badge: "-27%" },
+      { id: 13, name: "Pokémon", category: "masculino", oldPrice: 59.90, icon: "pokemon.jpg", badge: "-27%" },
+      { id: 14, name: "Rei Leão", category: "masculino", oldPrice: 109.90, icon: "leao.jpg", badge: "-25%" },
+      { id: 15, name: "Vingadores", category: "masculino", oldPrice: 58.90, icon: "vingadores.jpg", badge: "-31%" },
+      { id: 16, name: "Capitão-América", category: "masculino", oldPrice: 99.90, icon: "45.jpg", badge: "-31%" },
+      { id: 17, name: "X-men", category: "masculino", oldPrice: 110.90, icon: "xmen.jpg", badge: "-26%" },
+      { id: 18, name: "Wolverine", category: "masculino", oldPrice: 89.90, icon: "wwww.jpg", badge: "-29%" },
+      { id: 19, name: "Transformes", category: "masculino", oldPrice: 92.90, icon: "trans1.jpg", badge: "-25%" },
+      { id: 20, name: "Thor", category: "masculino", oldPrice: 67.90, icon: "thor.jpg", badge: "-26%" },
+      { id: 21, name: "Sonic", category: "masculino", oldPrice: 89.90, icon: "sese.jpg", badge: "-25%" },
+      { id: 22, name: "Wall-e", category: "masculino", oldPrice: 94.90, icon: "we.jpg", badge: "-26%" },
+      { id: 23, name: "Toy Story", category: "masculino", oldPrice: 102.90, icon: "ts.jpg", badge: "-26%" },
+      { id: 24, name: "Attack on Titan", category: "feminino", oldPrice: 119.90, icon: "titan.jpg", badge: "-26%" },
+      { id: 25, name: "Shrek", category: "masculino", oldPrice: 39.90, icon: "s1.jpg", badge: "-27%" },
+      { id: 26, name: "Shrek 2", category: "masculino", oldPrice: 45.90, icon: "ss2.jpg", badge: "-26%" },
+      { id: 27, name: "Shrek 3", category: "feminino", oldPrice: 55.90, icon: "s3.jpg", badge: "-24%" },
+      { id: 28, name: "Patrulha Canina", category: "masculino", oldPrice: 82.90, icon: "pt.jpg", badge: "-27%" },
+      { id: 29, name: "Princesinha Sofia", category: "feminino", oldPrice: 59.90, icon: "ps1.jpg", badge: "-27%" },
+      { id: 30, name: "Pequena Sereia", category: "feminino", oldPrice: 69.90, icon: "ps.jpg", badge: "-25%" },
+      { id: 31, name: "Cinderella", category: "feminino", oldPrice: 143.90, icon: "poiu.jpg", badge: "-31%" },
+      { id: 32, name: "Pica-Pau", category: "masculino", oldPrice: 87.90, icon: "pau.jpg", badge: "-31%" },
+      { id: 33, name: "Pato Donald", category: "masculino", oldPrice: 78.90, icon: "pato.jpg", badge: "-26%" },
+      { id: 34, name: "Pateta", category: "masculino", oldPrice: 78.90, icon: "pateta.jpg", badge: "-29%" },
+      { id: 35, name: "Boruto", category: "masculino", oldPrice: 101.90, icon: "nnb.jpg", badge: "-25%" },
+      { id: 36, name: "Mulher-Maravilha", category: "feminino", oldPrice: 69.90, icon: "mm.jpg", badge: "-26%" },
+      { id: 37, name: "Homem-aranha Miles Morales", category: "masculino", oldPrice: 76.90, icon: "miles.jpg", badge: "-25%" },
+      { id: 38, name: "Madagascar 2", category: "feminino", oldPrice: 68.90, icon: "m2.jpg", badge: "-26%" },
+      { id: 39, name: "Minnie", category: "feminino", oldPrice: 89.90, icon: "lp.jpg", badge: "-26%" },
+      { id: 40, name: "Hulk", category: "masculino", oldPrice: 79.90, icon: "hulk.jpg", badge: "-26%" },
+      { id: 41, name: "Flash", category: "masculino", oldPrice: 102.90, icon: "fff.jpg", badge: "-27%" },
+      { id: 42, name: "Digimon", category: "feminino", oldPrice: 99.90, icon: "ddd.jpg", badge: "-26%" },
+      { id: 43, name: "Dragon Ball Super", category: "masculino", oldPrice: 69.90, icon: "dbs.jpg", badge: "-24%" },
+      { id: 44, name: "Os Cavaleiros do Zodíaco", category: "masculino", oldPrice: 99.90, icon: "caca.jpg", badge: "-27%" },
+      { id: 45, name: "Blaze and the Monsters Machine", category: "masculino", oldPrice: 59.90, icon: "blaze.jpg", badge: "-27%" },
+      { id: 46, name: "Bela e a Fera", category: "feminino", oldPrice: 89.90, icon: "bf.jpg", badge: "-25%" },
+      { id: 47, name: "Ben 10", category: "masculino", oldPrice: 59.90, icon: "b10.jpg", badge: "-31%" },
+      { id: 48, name: "Akatsuki Naruto Shippuden", category: "masculino", oldPrice: 129.90, icon: "ans.jpg", badge: "-31%" },
+      { id: 49, name: "Minions", category: "masculino", oldPrice: 89.90, icon: "1234567.jpg", badge: "-26%" },
+      { id: 50, name: "Mickey", category: "masculino", oldPrice: 74.90, icon: "121212.jpg", badge: "-29%" },
+      { id: 51, name: "Pantera-Negra", category: "masculino", oldPrice: 79.90, icon: "12340.jpg", badge: "-25%" },
+      { id: 52, name: "Demon Slayer", category: "feminino", oldPrice: 99.90, icon: "6767.jpg", badge: "-26%" },
+      { id: 53, name: "My Little Pony", category: "feminino", oldPrice: 59.90, icon: "mpp.jpg", badge: "-26%" },
+      { id: 54, name: "Miraculous LadyBug", category: "feminino", oldPrice: 59.90, icon: "mlb.jpg", badge: "-26%" },
+      { id: 55, name: "Era do Gelo 4", category: "feminino", oldPrice: 69.90, icon: "er4.jpg", badge: "-26%" },
+      { id: 56, name: "Viuva Negra", category: "feminino", oldPrice: 69.90, icon: "vn.jpg", badge: "-26%" },
+      { id: 57, name: "Venon", category: "masculino", oldPrice: 112.90, icon: "vnn.jpg", badge: "-26%" },
+      { id: 58, name: "A Princesa e o Sapo", category: "feminino", oldPrice: 69.90, icon: "pes.jpg", badge: "-26%" },
+      { id: 59, name: "Kung Fu Panda", category: "masculino", oldPrice: 59.90, icon: "hjg.jpg", badge: "20%" },
+      { id: 60, name: "Bleach", category: "masculino", oldPrice: 99.90, icon: "676767.jpg", badge: "20%" },
+      { id: 61, name: "Cascão", category: "masculino", oldPrice: 132.90, icon: "cascao.jpg", badge: "20%" }
+    ];
+
+    function calculateCurrentPrice(oldPrice, badge) {
+      const normalizedBadge = String(badge || "").replace(/[^0-9,.-]/g, "").replace(",", ".");
+      const discount = Number(normalizedBadge);
+
+      if (!oldPrice || Number.isNaN(discount) || discount === 0) {
+        return Number(oldPrice) || 0;
+      }
+
+      const percentage = Math.abs(discount);
+      return Number(((oldPrice * (1 - percentage / 100))).toFixed(2));
+    }
+
+    let products = localProducts.map(product => ({
+      ...product,
+      price: calculateCurrentPrice(product.oldPrice, product.badge)
+    }));
+
+    let cart = [];
+
+    const productsGrid = document.getElementById("productsGrid");
+    const offersGrid = document.getElementById("offersGrid");
+    const cartBtn = document.getElementById("cartBtn");
+    const closeCartBtn = document.getElementById("closeCart");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const cartSidebar = document.getElementById("cartSidebar");
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cartCount");
+    const cartTotal = document.getElementById("cartTotal");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const clearCartBtn = document.getElementById("clearCart");
+    const checkoutModal = document.getElementById("checkoutModal");
+    const checkoutForm = document.getElementById("checkoutForm");
+    const cancelCheckoutBtn = document.getElementById("cancelCheckout");
+    const searchInput = document.getElementById("searchInput");
+    const clearSearchBtn = document.getElementById("clearSearch");
+    const newsletterForm = document.getElementById("newsletterForm");
+    const categoryBtns = document.querySelectorAll(".category-btn");
+
+    function formatPrice(value) {
+      return Number(value).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+
+    function getCategoryName(category) {
+      return category === "masculino" ? "Masculino" : "Feminino";
+    }
+
+    function imageHTML(product, width = "100%", height = "100%") {
+      if (!product.icon) {
+        return `<i class="fas fa-spray-can-sparkles"></i>`;
+      }
+
+      return `
+        <img
+          src="${product.icon}"
+          alt="${product.name}"
+          width="${width}"
+          height="${height}"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+        >
+        <i
+          class="fas fa-spray-can-sparkles"
+          style="display:none"
+        ></i>
+      `;
+    }
+
+    async function saveCart() {
+      await saveCartToDB(cart);
+      updateCartUI();
+    }
+
+    async function loadCart() {
+      cart = await loadCartFromDB();
+      updateCartUI();
+    }
+
+    function renderProducts(selectedCategory = "todos", searchTerm = "") {
+      const search = searchTerm.trim().toLowerCase();
+
+      const filtered = products.filter(product => {
+        const categoryMatch =
+          selectedCategory === "todos" ||
+          product.category === selectedCategory;
+
+        const searchMatch =
+          product.name.toLowerCase().includes(search) ||
+          getCategoryName(product.category)
+            .toLowerCase()
+            .includes(search);
+
+        return categoryMatch && searchMatch;
+      });
+
+      if (filtered.length === 0) {
+        productsGrid.innerHTML = `
+          <div class="no-results">
+            <i class="fas fa-search fa-2x"></i>
+            <h3>Nenhum produto encontrado</h3>
+            <p>Tente pesquisar por outro nome de perfume.</p>
+          </div>
+        `;
+        return;
+      }
+
+      productsGrid.innerHTML = filtered.map(product => `
+        <article class="product-card">
+          <div class="product-image">
+            ${imageHTML(product, 210, 200)}
+            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
+          </div>
+
+          <div class="product-info">
+            <span class="product-category">
+              ${getCategoryName(product.category)}
+            </span>
+
+            <h3 class="product-name">${product.name}</h3>
+
+            <div class="product-price">
+              <span class="price-current">${formatPrice(product.price)}</span>
+              ${product.oldPrice ? `<span class="price-old">${formatPrice(product.oldPrice)}</span>` : ""}
+            </div>
+
+            <button class="btn-add" onclick="addToCart(${product.id}, event)">
+              <i class="fas fa-cart-plus"></i>
+              Adicionar
+            </button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderOffers() {
+      const offers = [...products]
+        .filter(product => product.oldPrice && product.badge)
+        .slice(0, 4);
+
+      offersGrid.innerHTML = offers.map(product => `
+        <article class="offer-card">
+          <span class="offer-discount">${product.badge} OFF</span>
+
+          <div class="product-image">
+            ${imageHTML(product, 160, 130)}
+          </div>
+
+          <h3 class="product-name">${product.name}</h3>
+
+          <div class="product-price" style="justify-content:center; margin:10px 0;">
+            <span class="price-current">${formatPrice(product.price)}</span>
+            <span class="price-old">${formatPrice(product.oldPrice)}</span>
+          </div>
+
+          <button class="btn-add" onclick="addToCart(${product.id}, event)">
+            <i class="fas fa-bolt"></i>
+            Comprar Agora
+          </button>
+        </article>
+      `).join("");
+    }
+
+    async function addToCart(id, event) {
+      const product = products.find(item => item.id === id);
+
+      if (!product) return;
+
+      const existingProduct = cart.find(item => item.id === id);
+
+      if (existingProduct) {
+        existingProduct.qty++;
+      } else {
+        cart.push({
+          ...product,
+          qty: 1
+        });
+      }
+
+      await saveCart();
+      openCart();
+
+      const button = event?.target?.closest(".btn-add");
+
+      if (button) {
+        const originalHTML = button.innerHTML;
+
+        button.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
+        button.disabled = true;
+
+        setTimeout(() => {
+          button.innerHTML = originalHTML;
+          button.disabled = false;
+        }, 1200);
+      }
+    }
+
+    async function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      await saveCart();
+    }
+
+    async function updateQty(id, change) {
+      const item = cart.find(product => product.id === id);
+
+      if (!item) return;
+
+      item.qty += change;
+
+      if (item.qty <= 0) {
+        await removeFromCart(id);
+      } else {
+        await saveCart();
+      }
+    }
+
+    async function clearCart() {
+      cart = [];
+      await saveCart();
+    }
+
+    function updateCartUI() {
+      const totalItems = cart.reduce((total, item) => total + item.qty, 0);
+
+      cartCount.textContent = totalItems;
+      cartCount.style.display = totalItems > 0 ? "flex" : "none";
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = `
+          <div class="cart-empty">
+            <i class="fas fa-shopping-bag"></i>
+            <p>Seu carrinho está vazio</p>
+            <p style="font-size:0.9rem; margin-top:8px;">
+              Adicione perfumes para continuar
+            </p>
+          </div>
+        `;
+      } else {
+        cartItems.innerHTML = cart.map(item => `
+          <div class="cart-item">
+            <div class="cart-item-image">
+              ${imageHTML(item, 72, 72)}
+            </div>
+
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">${formatPrice(item.price)}</div>
+
+              <div class="cart-item-actions">
+                <button class="qty-btn" onclick="updateQty(${item.id}, -1)">
+                  <i class="fas fa-minus"></i>
+                </button>
+
+                <span class="qty-value">${item.qty}</span>
+
+                <button class="qty-btn" onclick="updateQty(${item.id}, 1)">
+                  <i class="fas fa-plus"></i>
+                </button>
+
+                <button class="remove-item" onclick="removeFromCart(${item.id})" title="Remover">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      cartTotal.textContent = formatPrice(total);
+    }
+
+    function openCart() {
+      cartSidebar.classList.add("active");
+      cartOverlay.classList.add("active");
+      document.body.classList.add("no-scroll");
+    }
+
+    function closeCart() {
+      cartSidebar.classList.remove("active");
+      cartOverlay.classList.remove("active");
+      document.body.classList.remove("no-scroll");
+    }
+
+    function openCheckout() {
+      if (cart.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+      }
+
+      checkoutModal.classList.add("active");
+    }
+
+    function closeCheckout() {
+      checkoutModal.classList.remove("active");
+    }
+
+    async function createOrder(event) {
+      event.preventDefault();
+
+      const customerName = document.getElementById("customerName").value.trim();
+      const customerEmail = document.getElementById("customerEmail").value.trim();
+      const customerPhone = document.getElementById("customerPhone").value.trim();
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+      const pedido = {
+        id: Date.now(),
+        customer_name: customerName,
+        customer_email: customerEmail,
+        customer_phone: customerPhone,
+        total: total,
+        created_at: new Date().toISOString(),
+        items: [...cart]
+      };
+
+      await saveOrderToDB(pedido);
+
+      cart = [];
+      await saveCart();
+
+      closeCart();
+      closeCheckout();
+      checkoutForm.reset();
+
+      alert(`Pedido #${pedido.id} registrado com sucesso!`);
+    }
+
+    cartBtn.addEventListener("click", openCart);
+    closeCartBtn.addEventListener("click", closeCart);
+    cartOverlay.addEventListener("click", closeCart);
+
+    checkoutBtn.addEventListener("click", openCheckout);
+    cancelCheckoutBtn.addEventListener("click", closeCheckout);
+    checkoutForm.addEventListener("submit", createOrder);
+
+    clearCartBtn.addEventListener("click", async () => {
+      if (cart.length === 0) return;
+
+      if (confirm("Deseja limpar todo o carrinho?")) {
+        await clearCart();
+      }
+    });
+
+    categoryBtns.forEach(button => {
+      button.addEventListener("click", () => {
+        categoryBtns.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+
+        renderProducts(
+          button.dataset.category,
+          searchInput.value
+        );
+      });
+    });
+
+    searchInput.addEventListener("input", () => {
+      const activeCategory =
+        document.querySelector(".category-btn.active")?.dataset.category || "todos";
+
+      renderProducts(activeCategory, searchInput.value);
+
+      clearSearchBtn.style.display =
+        searchInput.value.trim() ? "block" : "none";
+    });
+
+    clearSearchBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      clearSearchBtn.style.display = "none";
+
+      const activeCategory =
+        document.querySelector(".category-btn.active")?.dataset.category || "todos";
+
+      renderProducts(activeCategory);
+      searchInput.focus();
+    });
+
+    newsletterForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const email = newsletterForm.querySelector("input").value;
+
+      alert(
+        `Obrigado! O e-mail ${email} foi cadastrado com sucesso!`
+      );
+
+      newsletterForm.reset();
+    });
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        document.querySelectorAll(".nav-link").forEach(item => {
+          item.classList.remove("active");
+        });
+
+        link.classList.add("active");
+      });
+    });
+
+    async function initApp() {
+      await migrateLegacyStorage();
+      await loadCart();
+      renderProducts();
+      renderOffers();
+    }
+
+    initApp();
+  </script>
+</body>
+</html>
